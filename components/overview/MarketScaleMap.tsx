@@ -5,6 +5,7 @@ import { CardSection } from "@/components/shared/CardSection";
 import { EmptyState } from "@/components/shared/EmptyState";
 import type { RegionAggregate, RegionCoordinate } from "@/types/spotify";
 import { formatFullNumber, formatStreams } from "@/utils/format";
+import { getPublicAssetPath } from "@/utils/publicAssetPath";
 
 interface MarketScaleMapProps {
   regions: RegionAggregate[];
@@ -83,7 +84,15 @@ export function MarketScaleMap({
             aria-label="市場規模地圖"
           >
             <rect width={width} height={height} fill="#121212" />
-            <image href="/img/WorldMap.svg" x="0" y="0" width={width} height={height} preserveAspectRatio="none" opacity={0.82} />
+            <image
+              href={getPublicAssetPath("/img/WorldMap.svg")}
+              x="0"
+              y="0"
+              width={width}
+              height={height}
+              preserveAspectRatio="none"
+              opacity={0.82}
+            />
             {points.map((point) => {
               const selected = selectedRegion === point.region;
               const inactive = selectedRegion && !selected;

@@ -1,3 +1,5 @@
+import { getPublicAssetPath } from "@/utils/publicAssetPath";
+
 export type DashboardView = "overview" | "song";
 
 interface SidebarNavProps {
@@ -15,7 +17,7 @@ export function SidebarNav({ activeView, onViewChange }: SidebarNavProps) {
     <header className="sticky top-0 z-30 border-b border-[#2a2a2a] bg-[#000000]/92 px-4 py-2 backdrop-blur sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex min-w-0 items-center gap-3">
-          <img src="/img/Logo.png" alt="Spotify" className="h-10 w-10 rounded-[8px]" />
+          <img src={getPublicAssetPath("/img/Logo.png")} alt="Spotify" className="h-10 w-10 rounded-[8px]" />
           <div>
             <p className="text-xs font-bold text-[#1DB954]">資料儀表板</p>
             <h1 className="text-lg font-black leading-tight text-white xl:text-xl">Spotify 2017–2021 串流趨勢全解析</h1>

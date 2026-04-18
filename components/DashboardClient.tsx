@@ -23,6 +23,7 @@ import {
   sortSongOptions
 } from "@/utils/spotify";
 import type { DashboardView } from "./shared/SidebarNav";
+import { getPublicAssetPath } from "@/utils/publicAssetPath";
 
 export default function DashboardClient() {
   const [activeView, setActiveView] = useState<DashboardView>("overview");
@@ -40,7 +41,7 @@ export default function DashboardClient() {
   useEffect(() => {
     let cancelled = false;
 
-    fetch("/data/spotify_dashboard_data.json")
+    fetch(getPublicAssetPath("/data/spotify_dashboard_data.json"))
       .then((response) => {
         if (!response.ok) {
           throw new Error("找不到儀表板資料，請先執行 npm run prepare-data。");
@@ -132,7 +133,7 @@ export default function DashboardClient() {
     setSongDetailError(null);
     setSongDetailLoadingKey(selectedSongBucket);
 
-    fetch(`/data/song-details/${selectedSongBucket}`)
+    fetch(getPublicAssetPath(`/data/song-details/${selectedSongBucket}`))
       .then((response) => {
         if (!response.ok) throw new Error("無法載入這首歌的分桶資料。");
         return response.json() as Promise<SongDetailBucket>;
